@@ -775,6 +775,10 @@
                 if (value < 90) return 'metric-critical';
                 if (value < 94) return 'metric-warning';
             }
+            if (metric === 'temp') {
+                if (value >= 39 || (value > 0 && value < 30)) return 'metric-critical';
+                if (value > 37) return 'metric-warning';
+            }
             return '';
         }
 
@@ -883,7 +887,7 @@
                             </div>
                             <div class="vital-item">
                                 <div class="vital-label">Temperature</div>
-                                <div class="vital-value">${temp.toFixed(1) + '°C'}</div>
+                                <div class="vital-value ${metricClass('temp', temp)}">${temp.toFixed(1) + '°C'}</div>
                             </div>
                         </div>
                         <div class="card-chart-container">
